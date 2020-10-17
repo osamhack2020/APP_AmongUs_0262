@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, SectionList } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const DATA = [
     {
