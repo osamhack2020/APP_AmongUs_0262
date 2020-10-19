@@ -1,53 +1,76 @@
-import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import HomeScreen from './screens/HomeScreen';
-import LikedScreen from './screens/LikedScreen';
-import SearchScreen from './screens/SearchScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import React from 'react'
+import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
-const TabNavigator = createBottomTabNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Liked: {
-      screen: LikedScreen,
-    },
-    Search: {
-      screen: SearchScreen,
-    },
-    Settings: {
-      screen: SettingsScreen,
-    },
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Home') {
-          iconName = 'ios-home';
-        } else if (routeName === 'Liked') {
-          iconName = 'ios-star';
-        } else if (routeName === 'Search') {
-          iconName = 'ios-search';
-        } else if (routeName === 'Settings') {
-          iconName = 'ios-settings';
-        }
-        return (
-          <Ionicons
-            name={iconName}
-            size={horizontal ? 20 : 25}
-            color={tintColor}
-          />
-        );
+import MainScreen from './screens/MainScreen'
+import LoginScreen from './screens/LoginScreen'
+import LoadingScreen from './screens/LoadingScreen'
+
+const AppContainer = createAppContainer(
+  createSwitchNavigator(
+    {
+      Main: {
+        screen: MainScreen,
       },
-      tabBarOptions: {
-        activeTintColor: 'limegreen',
+      Login: {
+        screen: LoginScreen,
       },
-    }),
-  },
+      Loading: {
+        screen: LoadingScreen,
+      },
+    },
+    {
+      initialRouteName: 'Loading'
+    }
+  )
 );
-export default createAppContainer(TabNavigator);
+
+class App extends React.Component {
+  render() {  
+    return <AppContainer></AppContainer>
+  }
+}
+
+export default App;
+
+/*export default createAppContainer(
+  createSwitchNavigator(
+    {
+      MainScreen,
+      LoginScreen,
+      LoadingScreen,
+    },
+    {
+      initialRouteName: 'LoadingScreen',
+    }
+  )
+);*/
+
+/*const Total = createSwitchNavigator(
+  {
+    Loading: {
+      screen: LoadingScreen,
+      path: "./screens/LoadingScreen"
+    },
+    Login: {
+      screen: LoginScreen,
+      path: "./screens/LoginScreen"
+    },
+  },
+  {
+    initialRouteName: 'Loading'
+  }
+)
+
+const AppSwitch = createAppContainer(Total)
+export default AppSwitch;*/
+/*
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      LoadingScreen,
+      MainScreen,
+      LoginScreen,
+    }
+  )
+)*/
