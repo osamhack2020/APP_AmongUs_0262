@@ -5,91 +5,137 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const DATA = [
     {
         id: '6',
-        title: 'Item #6',
         liked: 0,
     },
     {
         id: '5',
-        title: 'Item #5',
         liked: 0,
     },
     {
         id: '4',
-        title: 'Item #4',
         liked: 0,
     },
     {
         id: '3',
-        title: 'Item #3',
         liked: 0,
     },
     {
         id: '2',
-        title: 'Item #2',
         liked: 0,
     },
     {
         id: '1',
-        title: 'Item #1',
         liked: 0,
     },
     {
         id: '7',
-        title: 'Item #7',
         liked: 0,
     },
     {
         id: '8',
-        title: 'Item #8',
         liked: 0,
     },
     {
         id: '9',
-        title: 'Item #9',
         liked: 0,
     },
     {
         id: '10',
-        title: 'Item #10',
         liked: 0,
     },
     {
         id: '11',
-        title: 'Item #11',
         liked: 0,
     },
     {
         id: '12',
-        title: 'Item #12',
         liked: 0,
     },
 ];
 
 const Item = ({ item, onPress, style }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>Item #{item.id}</Text>
     </TouchableOpacity>
 );
 
 const HomeTab1 = () => {
-    const [selectedId, setSelectedId]=useState(null);
+    const [selectedId, setSelectedId] = useState(null);
+    const [DDATA, setDDATA] = useState(
+        [
+            {
+                id: '1',
+                liked: false,
+            },
+            {
+                id: '2',
+                liked: true,
+            },
+            {
+                id: '3',
+                liked: false,
+            },
+            {
+                id: '4',
+                liked: true,
+            },
+            {
+                id: '5',
+                liked: false,
+            },
+            {
+                id: '6',
+                liked: true,
+            },
+            {
+                id: '7',
+                liked: false,
+            },
+            {
+                id: '8',
+                liked: true,
+            },
+            {
+                id: '9',
+                liked: false,
+            },
+            {
+                id: '10',
+                liked: true,
+            },
+            {
+                id: '11',
+                liked: false,
+            },
+            {
+                id: '12',
+                liked: true,
+            },
+            {
+                id: '13',
+                liked: false,
+            },
+        ]
+    );
 
-    /*for(var i=1;i<=12;++i) {
-        AsyncStorage.setItem(i, JSON.stringify({id: i, title: 'ITEM', liked: 0}));
-    }*/
+    const setItemSelected = ( item ) => {
+        const DDATAmap=DDATA;
+        setDDATA(DDATAmap.map(banner => banner === item ? { id: item.id, liked: !(item.liked) } : banner));
+    };
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
 
         return (
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons
-                    name={item.liked?'ios-star':'ios-star-outline'}
-                    size={30}
-                    color={'gold'}
-                    onPress={() => setSelectedId(item.id)}
-                    style={{ marginLeft: 10 }}
-                />
+                <TouchableOpacity onPress= {() => setItemSelected(item)}>
+                    <Ionicons
+                        name={item.liked ? 'ios-star' : 'ios-star-outline'}
+                        size={30}
+                        color={'gold'}
+                        style={{ marginLeft: 10 }}
+                    />
+                </TouchableOpacity>
                 <Item
                     item={item}
                     onPress={() => setSelectedId(item.id)}
@@ -102,7 +148,7 @@ const HomeTab1 = () => {
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={DATA}
+                data={DDATA}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
