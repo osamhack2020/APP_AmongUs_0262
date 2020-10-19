@@ -12,6 +12,8 @@ target 'workspace' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
   target 'workspaceTests' do
     inherit! :complete
     # Pods for testing
