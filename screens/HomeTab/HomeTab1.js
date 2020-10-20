@@ -2,57 +2,6 @@ import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, SectionList, AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const DATA = [
-    {
-        id: '6',
-        liked: 0,
-    },
-    {
-        id: '5',
-        liked: 0,
-    },
-    {
-        id: '4',
-        liked: 0,
-    },
-    {
-        id: '3',
-        liked: 0,
-    },
-    {
-        id: '2',
-        liked: 0,
-    },
-    {
-        id: '1',
-        liked: 0,
-    },
-    {
-        id: '7',
-        liked: 0,
-    },
-    {
-        id: '8',
-        liked: 0,
-    },
-    {
-        id: '9',
-        liked: 0,
-    },
-    {
-        id: '10',
-        liked: 0,
-    },
-    {
-        id: '11',
-        liked: 0,
-    },
-    {
-        id: '12',
-        liked: 0,
-    },
-];
-
 const Item = ({ item, onPress, style }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
         <Text style={styles.title}>Item #{item.id}</Text>

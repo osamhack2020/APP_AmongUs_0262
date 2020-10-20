@@ -1,82 +1,103 @@
 import React, { useState } from 'react';
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from 'react-native';
-
-const DATA = [
-    {
-        id: "6",
-        title: "Item #6",
-    },
-    {
-        id: "5",
-        title: "Item #5",
-    },
-    {
-        id: "4",
-        title: "Item #4",
-    },
-    {
-        id: "3",
-        title: "Item #3",
-    },
-    {
-        id: "2",
-        title: "Item #2",
-    },
-    {
-        id: "1",
-        title: "Item #1",
-    },
-    {
-        id: "7",
-        title: "Item #7",
-    },
-    {
-        id: "8",
-        title: "Item #8",
-    },
-    {
-        id: "9",
-        title: "Item #9",
-    },
-    {
-        id: "10",
-        title: "Item #10",
-    },
-    {
-        id: "11",
-        title: "Item #11",
-    },
-    {
-        id: "12",
-        title: "Item #12",
-    },
-];
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, SectionList, AsyncStorage } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Item = ({ item, onPress, style }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>Item #{item.id}</Text>
     </TouchableOpacity>
 );
 
 const HomeTab2 = () => {
     const [selectedId, setSelectedId] = useState(null);
+    const [DDATA, setDDATA] = useState(
+        [
+            {
+                id: '1',
+                liked: false,
+            },
+            {
+                id: '2',
+                liked: true,
+            },
+            {
+                id: '3',
+                liked: false,
+            },
+            {
+                id: '4',
+                liked: true,
+            },
+            {
+                id: '5',
+                liked: false,
+            },
+            {
+                id: '6',
+                liked: true,
+            },
+            {
+                id: '7',
+                liked: false,
+            },
+            {
+                id: '8',
+                liked: true,
+            },
+            {
+                id: '9',
+                liked: false,
+            },
+            {
+                id: '10',
+                liked: true,
+            },
+            {
+                id: '11',
+                liked: false,
+            },
+            {
+                id: '12',
+                liked: true,
+            },
+            {
+                id: '13',
+                liked: false,
+            },
+        ]
+    );
+
+    const setItemSelected = ( item ) => {
+        const DDATAmap=DDATA;
+        setDDATA(DDATAmap.map(banner => banner === item ? { id: item.id, liked: !(item.liked) } : banner));
+    };
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+        const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
 
         return (
-            <Item
-                item={item}
-                onPress={() => setSelectedId(item.id)}
-                style={{ backgroundColor }}
-            />
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                <TouchableOpacity onPress= {() => setItemSelected(item)}>
+                    <Ionicons
+                        name={item.liked ? 'ios-star' : 'ios-star-outline'}
+                        size={30}
+                        color={'gold'}
+                        style={{ marginLeft: 10 }}
+                    />
+                </TouchableOpacity>
+                <Item
+                    item={item}
+                    onPress={() => setSelectedId(item.id)}
+                    style={{ backgroundColor }}
+                />
+            </View>
         );
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={DATA}
+                data={DDATA}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
@@ -97,6 +118,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
+        width: 300,
     },
 });
 

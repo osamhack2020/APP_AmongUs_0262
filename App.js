@@ -66,11 +66,11 @@ const MainNav = createBottomTabNavigator(
     Home: {
       screen: HomeScreen,
     },
+    Explore: {
+      screen: SearchScreen,
+    },
     Liked: {
       screen: LikedScreen,
-    },
-    Search: {
-      screen: SearchScreen,
     },
     Settings: {
       screen: SettingsScreen,
@@ -83,10 +83,10 @@ const MainNav = createBottomTabNavigator(
         let iconName;
         if (routeName === 'Home') {
           iconName = 'ios-home';
+        } else if (routeName === 'Explore') {
+          iconName = 'ios-search';
         } else if (routeName === 'Liked') {
           iconName = 'ios-star';
-        } else if (routeName === 'Search') {
-          iconName = 'ios-search';
         } else if (routeName === 'Settings') {
           iconName = 'ios-settings';
         }
@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
   logincontainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexDirection: 'column',
   },
   logintextInput: {
     height: 40,
