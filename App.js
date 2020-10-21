@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, TextInput, Button, ActivityIndicator } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, TextInput, Button, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -14,50 +14,51 @@ class LoadingScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.loadingcontainer}>
-        <Text>Loading</Text>
-        <ActivityIndicator size="large" />
-        <Button title="Move to LoginScreen" onPress={() => this.props.navigation.navigate('Login')} />
+      <View style={styles.logincontainer}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+          <Image source={require('./android/app/src/main/res/web_hi_res_512.png')} style={styles.loadingBtn} />
+        </TouchableOpacity>
       </View>
     )
   }
 };
 
 class LoginScreen extends React.Component {
-  state = { email: '', password: '', errorMessage: null }
-
+  state = {
+    email: '',
+    password: '',
+  }
   render() {
     return (
       <View style={styles.logincontainer}>
-        <Text>Login</Text>
-        {this.state.errorMessage &&
-          <Text style={
-            { color: 'red' }
-          }>
-            {this.state.errorMessage}
-          </Text>}
-        <TextInput
-          style={styles.logintextInput}
-          autoCapitalize="none"
-          placeholder="Email"
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
-        <TextInput
-          secureTextEntry
-          style={styles.logintextInput}
-          autoCapitalize="none"
-          placeholder="Password"
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
-        <Button title='Sign in' onPress={() => this.props.navigation.navigate('Main')} />
-        <Button
-          title='Sign Up'
-        //onPress={() => this.props.navigation.navigate('SignUp')}
-        />
+        <Text style={styles.loginlogo}>군복</Text>
+        <Text style={styles.loginsublogo}>군인복지종합정보</Text>
+        <View style={styles.logininputView} >
+          <TextInput
+            style={styles.logininputText}
+            placeholder='Email'
+            placeholderTextColor='#2c6e49'
+            onChangeText={text => this.setState({ email: text })} />
+        </View>
+        <View style={styles.logininputView} >
+          <TextInput
+            secureTextEntry
+            style={styles.logininputText}
+            placeholder='Password'
+            placeholderTextColor='#2c6e49'
+            onChangeText={text => this.setState({ password: text })} />
+        </View>
+        <TouchableOpacity>
+          <Text style={styles.loginforgot}>Forgot Password?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginloginBtn} onPress={() => this.props.navigation.navigate('Main')}>
+          <Text style={styles.loginloginText}>Sign in</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.loginloginText}>Sign up</Text>
+        </TouchableOpacity>
       </View>
-    )
+    );
   }
 };
 
@@ -128,23 +129,59 @@ const App = createSwitchNavigator(
 );
 
 const styles = StyleSheet.create({
-  loadingcontainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   logincontainer: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#386641',
     alignItems: 'center',
-    flexDirection: 'column',
+    justifyContent: 'center',
   },
-  logintextInput: {
-    height: 40,
-    width: '90%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
+  loadingBtn: {
+    width: 120,
+    height: 120,
+    overflow: 'hidden',
+    borderRadius: 20,
+  },
+  loginlogo: {
+    fontWeight: 'bold',
+    fontSize: 50,
+    color: '#ffc9b9',
+    marginBottom: 10
+  },
+  loginsublogo: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#f2e8cf',
+    marginBottom: 20
+  },
+  logininputView: {
+    width: '80%',
+    backgroundColor: '#6a994e',
+    borderRadius: 25,
+    height: 50,
+    marginBottom: 20,
+    justifyContent: 'center',
+    padding: 20
+  },
+  logininputText: {
+    height: 50,
+    color: '#fefee3'
+  },
+  loginforgot: {
+    color: '#fefee3',
+    fontSize: 11
+  },
+  loginloginBtn: {
+    width: '80%',
+    backgroundColor: '#d68c45',
+    borderRadius: 25,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 40,
+    marginBottom: 10
+  },
+  loginloginText: {
+    color: '#fefee3'
   },
 });
 
