@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, TextInput, Button, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, TextInput, Button, ActivityIndicator, TouchableOpacity, Animated } from 'react-native'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -12,11 +12,41 @@ import SettingsScreen from './screens/SettingsScreen';
 
 class LoadingScreen extends React.Component {
 
+  state = {
+    loadingState: false,
+    loadingAni: new Animated.Value(0),
+  }
+
+  componentDidMount() {
+    const { loadingAni } = this.state;
+    Animated.parallel([
+      Animated.spring(loadingAni, {
+        toValue: 1,
+        tension: 5,
+        //friction: 10,
+        duration: 1000,
+      }).start(),
+    ]).start(() => {
+      this.setState({
+        loadingState: true,
+      });
+    });
+  }
+
   render() {
     return (
       <View style={styles.logincontainer}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-          <Image source={require('./android/app/src/main/res/web_hi_res_512.png')} style={styles.loadingBtn} />
+          <Animated.View
+            style={{
+              opacity: this.state.loadingAni,
+              top: this.state.loadingAni.interpolate({
+                inputRange: [0, 1],
+                outputRange: [50, 0],
+              })
+            }}>
+            <Image source={require('./android/app/src/main/res/web_hi_res_512.png')} style={styles.loadingBtn} />
+          </Animated.View>
         </TouchableOpacity>
       </View>
     )
@@ -32,7 +62,7 @@ class LoginScreen extends React.Component {
     return (
       <View style={styles.logincontainer}>
         <Text style={styles.loginlogo}>군복</Text>
-        <Text style={styles.loginsublogo}>군인복지종합정보</Text>
+        <Text style={styles.loginsublogo}>군인종합복지정보</Text>
         <View style={styles.logininputView} >
           <TextInput
             style={styles.logininputText}
