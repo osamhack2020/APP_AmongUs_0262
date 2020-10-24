@@ -57,36 +57,64 @@ class LoginScreen extends React.Component {
   state = {
     email: '',
     password: '',
+    loadingState: false,
+    loadingAni: new Animated.Value(0),
+  }
+  componentDidMount() {
+    const { loadingAni } = this.state;
+    Animated.parallel([
+      Animated.spring(loadingAni, {
+        toValue: 1,
+        tension: 5,
+        //friction: 10,
+        duration: 1000,
+      }).start(),
+    ]).start(() => {
+      this.setState({
+        loadingState: true,
+      });
+    });
   }
   render() {
     return (
       <View style={styles.logincontainer}>
-        <Text style={styles.loginlogo}>군복</Text>
-        <Text style={styles.loginsublogo}>군인종합복지정보</Text>
-        <View style={styles.logininputView} >
-          <TextInput
-            style={styles.logininputText}
-            placeholder='Email'
-            placeholderTextColor='#2c6e49'
-            onChangeText={text => this.setState({ email: text })} />
-        </View>
-        <View style={styles.logininputView} >
-          <TextInput
-            secureTextEntry
-            style={styles.logininputText}
-            placeholder='Password'
-            placeholderTextColor='#2c6e49'
-            onChangeText={text => this.setState({ password: text })} />
-        </View>
-        <TouchableOpacity>
-          <Text style={styles.loginforgot}>Forgot Password?</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.loginloginBtn} onPress={() => this.props.navigation.navigate('Main')}>
-          <Text style={styles.loginloginText}>Sign in</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.loginloginText}>Sign up</Text>
-        </TouchableOpacity>
+        <Animated.View
+          style={{
+            opacity: this.state.loadingAni,
+            top: this.state.loadingAni.interpolate({
+              inputRange: [0, 1],
+              outputRange: [50, 0],
+            })
+          }}>
+          <View styles={styles.loginlogincontainer}>
+            <Text style={styles.loginlogo}>군복</Text>
+            <Text style={styles.loginsublogo}>군인종합복지정보</Text>
+            <View style={styles.logininputView} >
+              <TextInput
+                style={styles.logininputText}
+                placeholder='Email'
+                placeholderTextColor='#2c6e49'
+                onChangeText={text => this.setState({ email: text })} />
+            </View>
+            <View style={styles.logininputView} >
+              <TextInput
+                secureTextEntry
+                style={styles.logininputText}
+                placeholder='Password'
+                placeholderTextColor='#2c6e49'
+                onChangeText={text => this.setState({ password: text })} />
+            </View>
+            <TouchableOpacity>
+              <Text style={styles.loginforgot}>Forgot Password?</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.loginloginBtn} onPress={() => { this.props.navigation.navigate('Main') }}>
+              <Text style={styles.loginloginText}>Sign in</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.loginloginText}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+        </Animated.View>
       </View>
     );
   }
@@ -130,7 +158,7 @@ const MainNav = createBottomTabNavigator(
         );
       },
       tabBarOptions: {
-        activeTintColor: 'limegreen',
+        activeTintColor: '#2c6e49',
       },
     }),
   },
@@ -184,7 +212,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   logininputView: {
-    width: '80%',
+    width: '100%',
     backgroundColor: '#6a994e',
     borderRadius: 25,
     height: 50,
@@ -201,7 +229,7 @@ const styles = StyleSheet.create({
     fontSize: 11
   },
   loginloginBtn: {
-    width: '80%',
+    width: '100%',
     backgroundColor: '#d68c45',
     borderRadius: 25,
     height: 50,
@@ -211,7 +239,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   loginloginText: {
-    color: '#fefee3'
+    color: '#fefee3',
+    textAlign: 'center'
   },
 });
 

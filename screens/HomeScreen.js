@@ -31,19 +31,16 @@ const HomeTabNav=createMaterialTopTabNavigator(
     defaultNavigationOptions: () => ({
       tabBarOptions: {
         style: {
-          backgroundColor: 'limegreen',
+          backgroundColor: '#2c6e49',
         },
       },
     }),
   },
 );
-
 const HomeContainer=createAppContainer(HomeTabNav);
-
 class HomeScreen extends React.Component {
   render() {
     return <HomeContainer></HomeContainer>
   }
 }
-
 export default HomeScreen;
