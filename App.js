@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, TextInput, Button, ActivityIndicator, TouchableOpacity, Animated } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, TextInput, Button, ActivityIndicator, TouchableOpacity, Animated, StatusBar } from 'react-native'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -36,6 +36,7 @@ class LoadingScreen extends React.Component {
   render() {
     return (
       <View style={styles.logincontainer}>
+        <StatusBar backgroundColor='#2c6e49' />
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
           <Animated.View
             style={{
@@ -78,6 +79,7 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.logincontainer}>
+        <StatusBar backgroundColor='#2c6e49' />
         <Animated.View
           style={{
             opacity: this.state.loadingAni,
@@ -189,7 +191,7 @@ const App = createSwitchNavigator(
 const styles = StyleSheet.create({
   logincontainer: {
     flex: 1,
-    backgroundColor: '#386641',
+    backgroundColor: '#2c6e49',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -207,13 +209,13 @@ const styles = StyleSheet.create({
   },
   loginsublogo: {
     fontWeight: 'bold',
-    fontSize: 30,
-    color: '#f2e8cf',
+    fontSize: 35,
+    color: '#fefee3',
     marginBottom: 20
   },
   logininputView: {
     width: '100%',
-    backgroundColor: '#6a994e',
+    backgroundColor: '#4c956c',
     borderRadius: 25,
     height: 50,
     marginBottom: 20,

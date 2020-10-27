@@ -7,12 +7,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import { FlatList, SafeAreaView, StatusBar, TouchableOpacity, Animated, Dimensions } from 'react-native';
 
-/*import HomeTab1 from './HomeTab/HomeTab1';
-import HomeTab2 from './HomeTab/HomeTab2';
-import HomeTab3 from './HomeTab/HomeTab3';
-import HomeTab4 from './HomeTab/HomeTab4';
-import HomeTab5 from './HomeTab/HomeTab5';*/
-
 const { height } = Dimensions.get("window");
 
 const Item = ({ item, onPress, style }) => (
@@ -28,7 +22,7 @@ class HomeTab1 extends React.Component {
   };
 
   state = {
-    data: [{ id: '1', liked: false, }, { id: '2', liked: true, }, { id: '3', liked: false, }, { id: '4', liked: true, }, { id: '5', liked: false, }, { id: '6', liked: true, }, { id: '7', liked: false, }, { id: '8', liked: true, }, { id: '9', liked: false, }, { id: '10', liked: true, }, { id: '11', liked: false, }, { id: '12', liked: true, }, { id: '13', liked: false, },],
+    data: [{ id: '1', liked: false, }, { id: '2', liked: false, }, { id: '3', liked: false, }, { id: '4', liked: false, }, { id: '5', liked: false, }, { id: '6', liked: false, }, { id: '7', liked: false, }, { id: '8', liked: false, }, { id: '9', liked: false, }, { id: '10', liked: false, }, { id: '11', liked: false, }, { id: '12', liked: false, }, { id: '13', liked: false, },],
     selectedId: 0,
   }
 
@@ -80,6 +74,7 @@ class HomeTab1 extends React.Component {
 
     return (
       <View style={styles.newcontainer}>
+        <StatusBar backgroundColor='#2c6e49' />
         <FlatList
           data={this.state.data}
           renderItem={renderItem}
