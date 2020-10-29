@@ -170,7 +170,9 @@ const MainContainer = createAppContainer(MainNav);
 
 class MainScreen extends React.Component {
   render() {
-    return <MainContainer></MainContainer>
+    return <MainContainer>
+      <StatusBar backgroundColor='#2c6e49' />
+    </MainContainer>
   }
 };
 

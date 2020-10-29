@@ -15,31 +15,61 @@ import {
   ListItem,
   Separator,
   Label,
+  List,
   Item,
   CheckBox,
   Input,
 } from 'native-base';
-import { Image } from 'react-native';
+import { Image, Alert ,StatusBar } from 'react-native';
 
 class SearchScreen extends React.Component {
   state = {
-    check1: false,
-    check2: true,
-    check3: false,
-    check: [],
+    data: [
+      { id: 0, banner: require('./a.png'), liked: false, keyWord: '에버랜드' },
+      { id: 1, banner: require('./b.png'), liked: false, keyWord: '서울랜드' },
+      {
+        id: 2,
+        banner: require('./c.png'),
+        liked: false,
+        keyWord: '롯데시네마',
+      },
+      { id: 3, banner: require('./d.png'), liked: false, keyWord: 'CGV' },
+      { id: 4, banner: require('./e.png'), liked: false, keyWord: '빕스' },
+      { id: 5, banner: require('./f.png'), liked: false, keyWord: '아웃백' },
+      { id: 6, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 7, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 8, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 9, banner: require('./x.png'), liked: false, keyWord: '' },
+    ],
     searchKey: '',
+    showId: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   };
 
   search = () => {
-    alert('asdf');
+    Alert.alert(this.state.searchKey);
+    const newShowId=[];
+    for(const item of this.state.data){
+      if(item.keyWord.indexOf(this.state.searchKey)>-1){
+        newShowId.push(item.id);
+      }
+    }
+    this.setState({showId: newShowId});
+  };
+
+  itemSelected = (item) => {
+    Alert.alert(item.id.toString());
+    const datamap = this.state.data;
+    this.setState({
+      data: datamap.map((e) => (e === item ? { ...e, liked: !item.liked } : e)),
+    });
   };
 
   render() {
     return (
       <Container>
         <Header
-          style={{ backgroundColor: '#2c6e49' }}
-          androidStatusBarColor='#2c6e49'>
+          androidStatusBarColor="#2c6e49"
+          style={{ backgroundColor: '#2c6e49' }}>
           <Left>
             <Image
               style={{ width: 30, height: 30, borderRadius: 10 }}
@@ -52,58 +82,40 @@ class SearchScreen extends React.Component {
         </Header>
         <Header searchBar rounded style={{ backgroundColor: '#2c6e49' }}>
           <Item>
-            <Button transparent onPress={() => {}}>
-              <Icon name='ios-search' />
+            <Button transparent onPress={this.search}>
+              <Icon name={'ios-search'} style={{ color: '#2c6e49' }} />
             </Button>
             <Input
-              placeholder='검색어를 입력해주세요'
+              placeholder="검색어를 입력해주세요"
               onChangeText={(text) =>
                 this.setState({ searchKey: text })
               }></Input>
-            <Icon name="ios-build-outline" />
+            <Icon name="filter-outline" />
           </Item>
         </Header>
-        <Content style={{ backgroundColor: '#fefee3' }}>
+        <Content style={{ backgroundColor: '#fffffc' }}>
           <Separator bordered>
             <Text style={{ fontSize: 12 }}>검색 결과</Text>
           </Separator>
-          <ListItem>
-            <Icon
-              name={this.state.check1 ? 'ios-star' : 'ios-star-outline'}
-              style={{ paddingRight: 10 }}></Icon>
-            <Image
-              source={require('../a.png')}
-              style={{
-                flex: 1,
-                resizeMode: 'stretch',
-                aspectRatio: 4 / 1,
-              }}></Image>
-          </ListItem>
-          <ListItem>
-            <Icon
-              name={this.state.check2 ? 'ios-star' : 'ios-star-outline'}
-              style={{ paddingRight: 10 }}></Icon>
-            <Image
-              source={require('../b.png')}
-              style={{
-                flex: 1,
-                resizeMode: 'stretch',
-                aspectRatio: 4 / 1,
-              }}></Image>
-          </ListItem>
-          <ListItem>
-            <Icon
-              name={this.state.check3 ? 'ios-star' : 'ios-star-outline'}
-              style={{ paddingRight: 10 }}></Icon>
-            <Image
-              source={require('../x.png')}
-              style={{
-                flex: 1,
-                resizeMode: 'stretch',
-                aspectRatio: 4 / 1,
-              }}></Image>
-          </ListItem>
+          <List
+            dataArray={this.state.showId}
+            renderRow={(item) => (
+              <ListItem>
+                <Icon
+                  name={this.state.data[item].liked ? 'ios-star' : 'ios-star-outline'}
+                  style={{ color: 'gold', paddingRight: 10 }}
+                  onPress={() => this.itemSelected(this.state.data[item])}></Icon>
+                <Image
+                  source={this.state.data[item].banner}
+                  style={{
+                    flex: 1,
+                    resizeMode: 'stretch',
+                    aspectRatio: 4 / 1,
+                  }}></Image>
+              </ListItem>
+            )}></List>
         </Content>
+        <StatusBar backgroundColor='#2c6e49' />
       </Container>
     );
   }
