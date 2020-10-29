@@ -1,23 +1,27 @@
 # Logo
-![0262logo](https://user-images.githubusercontent.com/43535460/97553875-548d8f00-1a19-11eb-9752-ee46de197f91.PNG)
+<img src="https://user-images.githubusercontent.com/14193000/97607723-b1f30180-1a54-11eb-8d2b-7529f91640f4.png" width="400">
 
 ## 팀소개 및 프로젝트 설명 동영상
 ![Slide2](https://user-images.githubusercontent.com/43535460/97554274-de3d5c80-1a19-11eb-9774-73771b4b75de.jpg)
 
-## 기능 설계
+## 기능 설계 - Web
  -  카카오 오븐을 이용한 목업 설계 이미지입니다.
-### 시작페이지(인기순위 top6 표시)
-![Home](https://user-images.githubusercontent.com/72017937/97103865-aae58f80-16f2-11eb-9d52-98424e06ece6.JPG)
-### 사이드바
-![sidebar2](https://user-images.githubusercontent.com/72017937/97103869-ade08000-16f2-11eb-90ad-fe010f827deb.JPG)
-### 혜택카드
-![adminLog](https://user-images.githubusercontent.com/72017937/97103877-b769e800-16f2-11eb-8bdb-f5870b0495a0.JPG)
-### 혜택카드 추가 페이지(추가할 수 있는 권한이 있는 사람(ex.관리자, 기업 이벤트 담당자)만 가능)
-![addBef](https://user-images.githubusercontent.com/72017937/97103879-b89b1500-16f2-11eb-99ec-71841219a72e.JPG)
+
+| ![Home](https://user-images.githubusercontent.com/72017937/97103865-aae58f80-16f2-11eb-9d52-98424e06ece6.JPG) <center>시작페이지(인기순위 top6 표시)</center> | ![sidebar2](https://user-images.githubusercontent.com/72017937/97103869-ade08000-16f2-11eb-90ad-fe010f827deb.JPG)    <center>사이드바</center>  |
+|--|--|
+| ![adminLog](https://user-images.githubusercontent.com/72017937/97103877-b769e800-16f2-11eb-8bdb-f5870b0495a0.JPG) <center>혜택카드</center> | ![addBef](https://user-images.githubusercontent.com/72017937/97103879-b89b1500-16f2-11eb-99ec-71841219a72e.JPG) <center>혜택카드 추가 페이지 (추가할 수 있는 권한이 있는 사람 - 관리자, 기업 이벤트 담당자 - 만 가능)</center>   
+
+## 기능 설계 - App
+| ![3-2](https://user-images.githubusercontent.com/14193000/97596358-f926c580-1a47-11eb-9c94-73a96b50fbff.png) | ![4-3](https://user-images.githubusercontent.com/14193000/97596372-fb891f80-1a47-11eb-9776-1d10bdc8588c.png) | ![5](https://user-images.githubusercontent.com/14193000/97596376-fc21b600-1a47-11eb-8164-919f227232a1.png) | ![6](https://user-images.githubusercontent.com/14193000/97596380-fd52e300-1a47-11eb-8c29-516e29d6b067.png) |
+|--|--|--|--|
+| <center>카테고리 분류 및 즐겨찾기 기능 제공</center> | <center>키워드 검색</center> |  <center>즐겨찾기한 혜택 모아보기</center> | <center>알림 기능 및 환경 설정</center> |
+
+
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
 * 권장: Google Chrome
+* Android v10 이상(API lv29)
 
 ## 기술 스택 (Technique Used) 
 ### Server(back-end)
