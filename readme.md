@@ -44,7 +44,7 @@
 $ git clone https://github.com/osamhack2020/WEB_AmongUs_0262
 $ cd ./frontend
 $ npm run serve
-터미널 하나 더 킨 후
+터미널 하나 더 실행하여
 $ cd ./backend
 $ yarn install
 $ yarn start
