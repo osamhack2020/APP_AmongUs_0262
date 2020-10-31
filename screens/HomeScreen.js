@@ -18,12 +18,7 @@ class HomeTab1 extends React.Component {
     data: [
       { id: 0, banner: require('./a.png'), liked: false, keyWord: '에버랜드' },
       { id: 1, banner: require('./b.png'), liked: false, keyWord: '서울랜드' },
-      {
-        id: 2,
-        banner: require('./x.png'),
-        liked: false,
-        keyWord: '',
-      },
+      { id: 2, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
@@ -147,12 +142,7 @@ class HomeTab2 extends React.Component {
     data: [
       { id: 0, banner: require('./c.png'), liked: false, keyWord: '롯데시네마' },
       { id: 1, banner: require('./d.png'), liked: false, keyWord: 'CGV' },
-      {
-        id: 2,
-        banner: require('./x.png'),
-        liked: false,
-        keyWord: '',
-      },
+      { id: 2, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
@@ -276,12 +266,7 @@ class HomeTab3 extends React.Component {
     data: [
       { id: 0, banner: require('./e.png'), liked: false, keyWord: '빕스' },
       { id: 1, banner: require('./f.png'), liked: false, keyWord: '아웃백' },
-      {
-        id: 2,
-        banner: require('./x.png'),
-        liked: false,
-        keyWord: '',
-      },
+      { id: 2, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
@@ -405,12 +390,7 @@ class HomeTabO extends React.Component {
     data: [
       { id: 0, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 1, banner: require('./x.png'), liked: false, keyWord: '' },
-      {
-        id: 2,
-        banner: require('./x.png'),
-        liked: false,
-        keyWord: '',
-      },
+      { id: 2, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
       { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },

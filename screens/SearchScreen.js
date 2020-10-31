@@ -20,19 +20,14 @@ import {
   CheckBox,
   Input,
 } from 'native-base';
-import { Image, Alert ,StatusBar } from 'react-native';
+import { Image, Alert, StatusBar } from 'react-native';
 
 class SearchScreen extends React.Component {
   state = {
     data: [
       { id: 0, banner: require('./a.png'), liked: false, keyWord: '에버랜드' },
       { id: 1, banner: require('./b.png'), liked: false, keyWord: '서울랜드' },
-      {
-        id: 2,
-        banner: require('./c.png'),
-        liked: false,
-        keyWord: '롯데시네마',
-      },
+      { id: 2, banner: require('./c.png'), liked: false, keyWord: '롯데시네마' },
       { id: 3, banner: require('./d.png'), liked: false, keyWord: 'CGV' },
       { id: 4, banner: require('./e.png'), liked: false, keyWord: '빕스' },
       { id: 5, banner: require('./f.png'), liked: false, keyWord: '아웃백' },
@@ -46,13 +41,13 @@ class SearchScreen extends React.Component {
   };
 
   search = () => {
-    const newShowId=[];
-    for(const item of this.state.data){
-      if(item.keyWord.indexOf(this.state.searchKey)>-1){
+    const newShowId = [];
+    for (const item of this.state.data) {
+      if (item.keyWord.indexOf(this.state.searchKey) > -1) {
         newShowId.push(item.id);
       }
     }
-    this.setState({showId: newShowId});
+    this.setState({ showId: newShowId });
   };
 
   itemSelected = (item) => {
