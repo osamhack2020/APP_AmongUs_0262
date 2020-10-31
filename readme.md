@@ -1,57 +1,82 @@
-아래의 **샘플 양식은 필수**입니다.
-설명이 부족하거나 추가하고싶은 부분이 있으면 개발자님이 추가해서 작성해주세요!
-동영상, 이미지, 텍스트 전부 자유입니다.
 
-[https://github.com/osam2019](https://github.com/osam2019)
-**2019프로젝트, readme.md를 참고하여 개발자님의 새로운 프로젝트를 만들어주세요!**
+# Logo
+<img src="https://user-images.githubusercontent.com/14193000/97607723-b1f30180-1a54-11eb-8d2b-7529f91640f4.png" width="500">
 
-# Smaple Logo
-![Logo](https://logosbynick.com/wp-content/uploads/2018/03/final-logo-example.png)
+## 팀소개 및 프로젝트 설명 동영상
+![Slide2](https://user-images.githubusercontent.com/43535460/97554274-de3d5c80-1a19-11eb-9774-73771b4b75de.jpg)
 
-팀명 텍스트 및 팀명 로고 이미지 **(택1)**
+## 기능 설계 - Web
+ -  카카오 오븐을 이용한 목업 설계 이미지입니다.
 
-## 팀소개 및 프로잭트 설명 동영상
-[![Watch the video](https://img.youtube.com/vi/LjX3eVQdIyk/0.jpg)](https://www.youtube.com/watch?time_continue=117&v=LjX3eVQdIyk)
+| ![Home](https://user-images.githubusercontent.com/72017937/97103865-aae58f80-16f2-11eb-9d52-98424e06ece6.JPG) <center>시작페이지(인기순위 top6 표시)</center> | ![sidebar2](https://user-images.githubusercontent.com/72017937/97103869-ade08000-16f2-11eb-90ad-fe010f827deb.JPG)    <center>사이드바</center>  |
+|--|--|
+| ![adminLog](https://user-images.githubusercontent.com/72017937/97103877-b769e800-16f2-11eb-8bdb-f5870b0495a0.JPG) <center>**혜택카드**</center> | ![addBef](https://user-images.githubusercontent.com/72017937/97103879-b89b1500-16f2-11eb-99ec-71841219a72e.JPG) <center>**혜택카드 추가 페이지**<br/>(추가할 수 있는 권한이 있는 사람 - 관리자, 기업 이벤트 담당자 - 만 가능)</center>   
 
-## 기능 설계
- -  발사믹, 카카오 오븐 등 본인이 편한 목업 프레임워크를 이용하여 제작 후 링크 
- - 수기로 작성시 찍어서 올려주세요
+## 기능 설계 - App
+| ![3-2](https://user-images.githubusercontent.com/14193000/97596358-f926c580-1a47-11eb-9c94-73a96b50fbff.png) | ![4-3](https://user-images.githubusercontent.com/14193000/97596372-fb891f80-1a47-11eb-9776-1d10bdc8588c.png) | ![5](https://user-images.githubusercontent.com/14193000/97596376-fc21b600-1a47-11eb-8164-919f227232a1.png) | ![6](https://user-images.githubusercontent.com/14193000/97596380-fd52e300-1a47-11eb-8c29-516e29d6b067.png) |
+|--|--|--|--|
+| <center>**카테고리 분류 및 즐겨찾기 기능 제공**</center> | <center>**키워드 검색**</center> |  <center>**즐겨찾기한 혜택 모아보기**</center> | <center>**알림 기능 및 환경 설정**</center> |
+
+
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
-* 권장: Google Chrome 버젼 77 이상
+* 권장: Google Chrome
+* Android v10 이상(API lv29)
 
-## 기술 스택 (Technique Used) (예시)
+## 기술 스택 (Technique Used) 
 ### Server(back-end)
- -  nodejs, php, java 등 서버 언어 버전 
- - express, laravel, sptring boot 등 사용한 프레임워크 
- - DB 등 사용한 다른 프로그램 
+ - node.js v12.19.0
+ - 프레임워크 : express.js v4.17.1
+ - DB : MySQL v2.2.5
  
 ### front-end
- -  react.js, vue.js 등 사용한 front-end 프레임워크 
- -  UI framework
- - 기타 사용한 라이브러리
+ - 프레임워크 : vue.js v2.6.12
+ - UI framework : bootstrap-vue v2.18.1
 
-## 설치 안내 (Installation Process)
+### App
+ - react-native v0.63.3
+ - react-native-cli v2.0.1
+ - native-base v2.13.14
+
+## 설치 안내 (Installation Process)(개발 테스트용)
 ```bash
-$ git clone git주소
-$ yarn or npm install
-$ yarn start or npm run start
+$ git clone https://github.com/osamhack2020/WEB_AmongUs_0262
+$ cd ./frontend
+$ npm run serve
+터미널 하나 더 실행하여
+$ cd ./backend
+$ yarn install
+$ yarn start
 ```
 
 ## 프로젝트 사용법 (Getting Started)
-**마크다운 문법을 이용하여 자유롭게 기재**
+AWS나 Azure같은 클라우드 웹 서비스를 사용하지 않아 BE 실행 시 데이터 테스트 케이스 추가가 필요합니다.  
+본 프로젝트에서 프로토타입 작동을 위해 FE와 BE를 연동하지 않고 FE 자체의 테스트 데이터를 사용합니다.  
 
-잘 모를 경우
-구글 검색 - 마크다운 문법
-[https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&memberNo=42458017](https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&memberNo=42458017)
+### 테스트 데이터베이스 추가하기(vs codespace(Ubuntu) 기준, windows 사용자라면 다른 방식으로 Mysql 설치 권장)
+```bash
+$ sudo apt-get install mysql-server
+$ sudo service mysql start
+$ mysql -uroot -p
+```
+1. 초기 비밀번호는 설정되어 있지 않습니다. 만약 Permission denying 발생시 sudo 권한으로 실행합니다.  
 
- 편한 마크다운 에디터를 찾아서 사용
- 샘플 에디터 [https://stackedit.io/app#](https://stackedit.io/app#)
+2. ./backend/test/createDatabase.sql 에 있는 명령어를 실행하여 데이터베이스와 그에 접속할 수 있는 사용자 추가합니다.  
+3. mysql 접속을 끊고 다시 접속합니다.  
+```bash
+$ mysql -u0262user -p goondb
+$ password: 0262fighting!
+```
+4. 0262user로 접속 후 ./backend/test/tables.sql에 있는 쿼리로 테이블 생성합니다.  
+5. ./backend/test/insertUser.sql 과 ./backend/test/insertBenefit.sql에 있는 테스트 케이스를 추가합니다.  
+
  
 ## 팀 정보 (Team Information)
-- hong gil dong (hong999@gmail.com), Github Id: gildong999
-- kim su ji (suji999@gmail.com), Github Id: suji999
+- 팀장, FE : Kim Min Chul (kminchul95@naver.com), Github Id: nyan101
+- BE : Kim Jae Min (msyh0207@naver.com), Github Id: zzamny1013
+- FE : Kim Seung Un (seung1457@naver.com), Github Id: ku1457
+- App : Lee Joong Hoon (doublehoon99@gmail.com), Github Id: DoubleHoon
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
- * [MIT](https://github.com/osam2020-WEB/Sample-ProjectName-TeamName/blob/master/license.md)
+ * [MIT](https://github.com/osamhack2020/WEB_AmongUs_0262/blob/master/license.md)

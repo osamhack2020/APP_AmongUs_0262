@@ -46,7 +46,6 @@ class LikedScreen extends React.Component {
   };
 
   search = () => {
-    Alert.alert(this.state.searchKey);
     const newShowId=[];
     for(const item of this.state.data){
       if(item.keyWord.indexOf(this.state.searchKey)>-1){
@@ -57,7 +56,6 @@ class LikedScreen extends React.Component {
   };
 
   itemSelected = (item) => {
-    Alert.alert(item.id.toString());
     const datamap = this.state.data;
     this.setState({
       data: datamap.map((e) => (e === item ? { ...e, liked: !item.liked } : e)),

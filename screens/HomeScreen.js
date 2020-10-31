@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
@@ -9,26 +9,36 @@ import { FlatList, SafeAreaView, StatusBar, TouchableOpacity, Animated, Dimensio
 
 const { height } = Dimensions.get("window");
 
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>Item #{item.id}</Text>
-  </TouchableOpacity>
-);
-
 class HomeTab1 extends React.Component {
-
   static defaultProps = {
     draggableRange: { top: height + 0 - 64, bottom: 0 }
   };
-
   state = {
-    data: [{ id: '1', liked: false, }, { id: '2', liked: false, }, { id: '3', liked: false, }, { id: '4', liked: false, }, { id: '5', liked: false, }, { id: '6', liked: false, }, { id: '7', liked: false, }, { id: '8', liked: false, }, { id: '9', liked: false, }, { id: '10', liked: false, }, { id: '11', liked: false, }, { id: '12', liked: false, }, { id: '13', liked: false, },],
     selectedId: 0,
+    data: [
+      { id: 0, banner: require('./a.png'), liked: false, keyWord: '에버랜드' },
+      { id: 1, banner: require('./b.png'), liked: false, keyWord: '서울랜드' },
+      {
+        id: 2,
+        banner: require('./x.png'),
+        liked: false,
+        keyWord: '',
+      },
+      { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 6, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 7, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 8, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 9, banner: require('./x.png'), liked: false, keyWord: '' },
+    ],
   }
 
   setItemSelected = (item) => {
     const datamap = this.state.data;
-    this.setState({ data: datamap.map(banner => banner === item ? { id: item.id, liked: !(item.liked) } : banner) });
+    this.setState({
+      data: datamap.map((e) => (e === item ? { ...e, liked: !item.liked } : e)),
+    });
   };
 
   _draggedValue = new Animated.Value(0);
@@ -52,22 +62,30 @@ class HomeTab1 extends React.Component {
     });
 
     const renderItem = ({ item }) => {
-      const backgroundColor = item.id === this.state.selectedId ? '#6e3b6e' : '#f9c2ff';
       return (
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
           <TouchableOpacity onPress={() => this.setItemSelected(item)}>
             <Ionicons
               name={item.liked ? 'ios-star' : 'ios-star-outline'}
               size={30}
               color={'gold'}
-              style={{ marginLeft: 10 }}
+              style={{ marginLeft: 10, marginRight: 20 }}
             />
           </TouchableOpacity>
-          <Item
-            item={item}
-            onPress={() => { this.setState({ selectedId: item }); this._panel.show(height + 100) }}
-            style={{ backgroundColor }}
-          />
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ selectedId: item });
+              this._panel.show(height + 100);
+            }}>
+            <Image
+              source={this.state.data[item.id].banner}
+              style={{
+                width: 320,
+                height: 80,
+                resizeMode: 'stretch',
+                //aspectRatio: 4 / 1,
+              }}></Image>
+          </TouchableOpacity>
         </View>
       );
     };
@@ -102,21 +120,401 @@ class HomeTab1 extends React.Component {
             </View>
             <View style={styles.panelcontainer}>
               <View style={{ height: height - 300 }}>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
-              <Text>Bottom sheet content</Text>
+                <Text>Details</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                 <TouchableOpacity style={styles.panelDetailBtn1} onPress={() => { }}>
-                  <Text>Like</Text>
+                  <Text>즐겨찾기에 추가</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.panelDetailBtn} onPress={() => { }}>
-                  <Text>Show Details</Text>
+                  <Text>자세히(웹)</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </SlidingUpPanel>
+      </View>
+    );
+  }
+}
+
+class HomeTab2 extends React.Component {
+  static defaultProps = {
+    draggableRange: { top: height + 0 - 64, bottom: 0 }
+  };
+  state = {
+    selectedId: 0,
+    data: [
+      { id: 0, banner: require('./c.png'), liked: false, keyWord: '롯데시네마' },
+      { id: 1, banner: require('./d.png'), liked: false, keyWord: 'CGV' },
+      {
+        id: 2,
+        banner: require('./x.png'),
+        liked: false,
+        keyWord: '',
+      },
+      { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 6, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 7, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 8, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 9, banner: require('./x.png'), liked: false, keyWord: '' },
+    ],
+  }
+
+  setItemSelected = (item) => {
+    const datamap = this.state.data;
+    this.setState({
+      data: datamap.map((e) => (e === item ? { ...e, liked: !item.liked } : e)),
+    });
+  };
+
+  _draggedValue = new Animated.Value(0);
+
+  render() {
+    const { top, bottom } = this.props.draggableRange;
+    const textTranslateY = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, 8],
+      extrapolate: "clamp"
+    });
+    const textTranslateX = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, -12],
+      extrapolate: "clamp"
+    });
+    const textScale = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [1, 0.7],
+      extrapolate: "clamp"
+    });
+
+    const renderItem = ({ item }) => {
+      return (
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
+          <TouchableOpacity onPress={() => this.setItemSelected(item)}>
+            <Ionicons
+              name={item.liked ? 'ios-star' : 'ios-star-outline'}
+              size={30}
+              color={'gold'}
+              style={{ marginLeft: 10, marginRight: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ selectedId: item });
+              this._panel.show(height + 100);
+            }}>
+            <Image
+              source={this.state.data[item.id].banner}
+              style={{
+                width: 320,
+                height: 80,
+                resizeMode: 'stretch',
+                //aspectRatio: 4 / 1,
+              }}></Image>
+          </TouchableOpacity>
+        </View>
+      );
+    };
+
+    return (
+      <View style={styles.newcontainer}>
+        <StatusBar backgroundColor='#2c6e49' />
+        <FlatList
+          data={this.state.data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          extraData={this.state.selectedId} />
+        <SlidingUpPanel
+          ref={c => (this._panel = c)}
+          draggableRange={this.props.draggableRange}
+          animatedValue={this._draggedValue}
+          snappingPoints={[0]}
+          height={height + 30}
+          friction={0.9}>
+          <View style={styles.panelpanel}>
+            <View style={styles.panelpanelHeader}>
+              <Animated.View
+                style={{
+                  transform: [
+                    { translateY: textTranslateY },
+                    { translateX: textTranslateX },
+                    { scale: textScale }
+                  ]
+                }}>
+                <Text style={styles.paneltextHeader}>Sliding Up Panel</Text>
+              </Animated.View>
+            </View>
+            <View style={styles.panelcontainer}>
+              <View style={{ height: height - 300 }}>
+                <Text>Details</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <TouchableOpacity style={styles.panelDetailBtn1} onPress={() => { }}>
+                  <Text>즐겨찾기에 추가</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.panelDetailBtn} onPress={() => { }}>
+                  <Text>자세히(웹)</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </SlidingUpPanel>
+      </View>
+    );
+  }
+}
+
+class HomeTab3 extends React.Component {
+  static defaultProps = {
+    draggableRange: { top: height + 0 - 64, bottom: 0 }
+  };
+  state = {
+    selectedId: 0,
+    data: [
+      { id: 0, banner: require('./e.png'), liked: false, keyWord: '빕스' },
+      { id: 1, banner: require('./f.png'), liked: false, keyWord: '아웃백' },
+      {
+        id: 2,
+        banner: require('./x.png'),
+        liked: false,
+        keyWord: '',
+      },
+      { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 6, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 7, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 8, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 9, banner: require('./x.png'), liked: false, keyWord: '' },
+    ],
+  }
+
+  setItemSelected = (item) => {
+    const datamap = this.state.data;
+    this.setState({
+      data: datamap.map((e) => (e === item ? { ...e, liked: !item.liked } : e)),
+    });
+  };
+
+  _draggedValue = new Animated.Value(0);
+
+  render() {
+    const { top, bottom } = this.props.draggableRange;
+    const textTranslateY = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, 8],
+      extrapolate: "clamp"
+    });
+    const textTranslateX = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, -12],
+      extrapolate: "clamp"
+    });
+    const textScale = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [1, 0.7],
+      extrapolate: "clamp"
+    });
+
+    const renderItem = ({ item }) => {
+      return (
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
+          <TouchableOpacity onPress={() => this.setItemSelected(item)}>
+            <Ionicons
+              name={item.liked ? 'ios-star' : 'ios-star-outline'}
+              size={30}
+              color={'gold'}
+              style={{ marginLeft: 10, marginRight: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ selectedId: item });
+              this._panel.show(height + 100);
+            }}>
+            <Image
+              source={this.state.data[item.id].banner}
+              style={{
+                width: 320,
+                height: 80,
+                resizeMode: 'stretch',
+                //aspectRatio: 4 / 1,
+              }}></Image>
+          </TouchableOpacity>
+        </View>
+      );
+    };
+
+    return (
+      <View style={styles.newcontainer}>
+        <StatusBar backgroundColor='#2c6e49' />
+        <FlatList
+          data={this.state.data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          extraData={this.state.selectedId} />
+        <SlidingUpPanel
+          ref={c => (this._panel = c)}
+          draggableRange={this.props.draggableRange}
+          animatedValue={this._draggedValue}
+          snappingPoints={[0]}
+          height={height + 30}
+          friction={0.9}>
+          <View style={styles.panelpanel}>
+            <View style={styles.panelpanelHeader}>
+              <Animated.View
+                style={{
+                  transform: [
+                    { translateY: textTranslateY },
+                    { translateX: textTranslateX },
+                    { scale: textScale }
+                  ]
+                }}>
+                <Text style={styles.paneltextHeader}>Sliding Up Panel</Text>
+              </Animated.View>
+            </View>
+            <View style={styles.panelcontainer}>
+              <View style={{ height: height - 300 }}>
+                <Text>Details</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <TouchableOpacity style={styles.panelDetailBtn1} onPress={() => { }}>
+                  <Text>즐겨찾기에 추가</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.panelDetailBtn} onPress={() => { }}>
+                  <Text>자세히(웹)</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </SlidingUpPanel>
+      </View>
+    );
+  }
+}
+
+class HomeTabO extends React.Component {
+  static defaultProps = {
+    draggableRange: { top: height + 0 - 64, bottom: 0 }
+  };
+  state = {
+    selectedId: 0,
+    data: [
+      { id: 0, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 1, banner: require('./x.png'), liked: false, keyWord: '' },
+      {
+        id: 2,
+        banner: require('./x.png'),
+        liked: false,
+        keyWord: '',
+      },
+      { id: 3, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 4, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 5, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 6, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 7, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 8, banner: require('./x.png'), liked: false, keyWord: '' },
+      { id: 9, banner: require('./x.png'), liked: false, keyWord: '' },
+    ],
+  }
+
+  setItemSelected = (item) => {
+    const datamap = this.state.data;
+    this.setState({
+      data: datamap.map((e) => (e === item ? { ...e, liked: !item.liked } : e)),
+    });
+  };
+
+  _draggedValue = new Animated.Value(0);
+
+  render() {
+    const { top, bottom } = this.props.draggableRange;
+    const textTranslateY = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, 8],
+      extrapolate: "clamp"
+    });
+    const textTranslateX = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [0, -12],
+      extrapolate: "clamp"
+    });
+    const textScale = this._draggedValue.interpolate({
+      inputRange: [bottom, top],
+      outputRange: [1, 0.7],
+      extrapolate: "clamp"
+    });
+
+    const renderItem = ({ item }) => {
+      return (
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
+          <TouchableOpacity onPress={() => this.setItemSelected(item)}>
+            <Ionicons
+              name={item.liked ? 'ios-star' : 'ios-star-outline'}
+              size={30}
+              color={'gold'}
+              style={{ marginLeft: 10, marginRight: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ selectedId: item });
+              this._panel.show(height + 100);
+            }}>
+            <Image
+              source={this.state.data[item.id].banner}
+              style={{
+                width: 320,
+                height: 80,
+                resizeMode: 'stretch',
+                //aspectRatio: 4 / 1,
+              }}></Image>
+          </TouchableOpacity>
+        </View>
+      );
+    };
+
+    return (
+      <View style={styles.newcontainer}>
+        <StatusBar backgroundColor='#2c6e49' />
+        <FlatList
+          data={this.state.data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          extraData={this.state.selectedId} />
+        <SlidingUpPanel
+          ref={c => (this._panel = c)}
+          draggableRange={this.props.draggableRange}
+          animatedValue={this._draggedValue}
+          snappingPoints={[0]}
+          height={height + 30}
+          friction={0.9}>
+          <View style={styles.panelpanel}>
+            <View style={styles.panelpanelHeader}>
+              <Animated.View
+                style={{
+                  transform: [
+                    { translateY: textTranslateY },
+                    { translateX: textTranslateX },
+                    { scale: textScale }
+                  ]
+                }}>
+                <Text style={styles.paneltextHeader}>Sliding Up Panel</Text>
+              </Animated.View>
+            </View>
+            <View style={styles.panelcontainer}>
+              <View style={{ height: height - 300 }}>
+                <Text>Details</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+                <TouchableOpacity style={styles.panelDetailBtn1} onPress={() => { }}>
+                  <Text>즐겨찾기에 추가</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.panelDetailBtn} onPress={() => { }}>
+                  <Text>자세히(웹)</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -134,7 +532,7 @@ const styles = {
   },
   newcontainer: {
     flex: 1,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#fffffc",
     alignItems: "center",
     justifyContent: "center"
   },
@@ -195,20 +593,20 @@ const styles = {
 
 const HomeTabNav = createMaterialTopTabNavigator(
   {
-    Cat1: {
+    체험: {
       screen: HomeTab1,
     },
-    Cat2: {
-      screen: HomeTab1,
+    문화: {
+      screen: HomeTab2,
     },
-    Cat3: {
-      screen: HomeTab1,
+    외식: {
+      screen: HomeTab3,
     },
-    Cat4: {
-      screen: HomeTab1,
+    숙박: {
+      screen: HomeTabO,
     },
-    Cat5: {
-      screen: HomeTab1,
+    레저: {
+      screen: HomeTabO,
     },
   },
   {
