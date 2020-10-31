@@ -81,4 +81,4 @@ $ password: 0262fighting!
 - App : Lee Joong Hoon (doublehoon99@gmail.com), Github Id: DoubleHoon
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
- * [MIT](https://github.com/osamhack2020/WEB_AmongUs_0262/blob/master/license.md)
+ * [MIT](https://github.com/osamhack2020/APP_AmongUs_0262/blob/master/license.md)
